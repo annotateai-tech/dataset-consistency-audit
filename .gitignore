@@ -1,0 +1,10 @@
+overlay/
+crops/
+predictions/
+runs/
+*.pt
+*.jpg
+*.jpeg
+*.png
+__pycache__/
+.env
