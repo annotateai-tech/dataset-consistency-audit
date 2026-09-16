@@ -1,0 +1,25 @@
+
+BASELINES PAR CLUSTER — geles le 25 aout 2026
+Regle : un desaccord appartient au cluster si le CENTRE
+de sa boite tombe dans la region.
+
+CLUSTER                   GT_ONLY  PRED_ONLY      TOTAL     SEUIL
+------------------------------------------------------------------
+007/citrus_mesh_bags            3         82         85     <= 42
+019/fridge_depth                0        163        163     <= 81
+019/fp_sign                     0          2          2      pm 2
+019/fp_dhl_and_text             0         14         14      pm 2
+019/fp_floor                    0          1          1      pm 2
+029/kiwi_punnets                0          0          0      <= 0
+029/berry_punnets               0          2          2      <= 1
+032/bottles_standing            0          3          3      <= 1
+032/bottles_lying               7         21         28     <= 14
+------------------------------------------------------------------
+TOTAL CLUSTERS                                      298
+
+Lecture : le pre-enregistrement dit "drop by at least half"
+pour les clusters couverts, et "move by less than +/-2" pour
+les erreurs dispersees. La colonne SEUIL en est la traduction
+mecanique. Tout seuil qui ne se deduit pas du texte enregistre
+est une deviation et se publie comme telle.
+
