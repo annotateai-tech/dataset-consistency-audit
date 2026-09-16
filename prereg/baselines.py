@@ -59,6 +59,31 @@ def iou(a, b):
     return inter / union if union > 0 else 0.0
 
 
+def match(gt, pred, thr):
+    """Appariement glouton, dans l'ordre d'iteration de gt.
+
+    Cet ordre EST la regle. Ne pas l'optimiser : un appariement
+    optimal global donnerait d'autres chiffres, et les baselines
+    du 25 aout 2026 ont ete produites avec celui-ci.
+
+    Renvoie (matched_gt, used_pred), deux ensembles d'indices.
+    """
+    used_pred = set()
+    matched_gt = set()
+    for gi, g in enumerate(gt):
+        best, bi = 0.0, -1
+        for pi, p in enumerate(pred):
+            if pi in used_pred:
+                continue
+            s = iou(g, p)
+            if s > best:
+                best, bi = s, pi
+        if best >= thr:
+            used_pred.add(bi)
+            matched_gt.add(gi)
+    return matched_gt, used_pred
+
+
 def centre_in(box, region, W, H):
     """box = (x, y, w, h) en pixels ; region = (l,t,r,b) en %"""
     cx = box[0] + box[2] / 2
@@ -123,20 +148,7 @@ def main():
                 break
         gt = gt_all.get(fname, [])
 
-        # appariement glouton, IoU 0.5
-        used_pred = set()
-        matched_gt = set()
-        for gi, g in enumerate(gt):
-            best, bi = 0.0, -1
-            for pi, p in enumerate(pred):
-                if pi in used_pred:
-                    continue
-                s = iou(g, p)
-                if s > best:
-                    best, bi = s, pi
-            if best >= IOU_MATCH:
-                used_pred.add(bi)
-                matched_gt.add(gi)
+        matched_gt, used_pred = match(gt, pred, IOU_MATCH)
 
         gt_only = [g for i, g in enumerate(gt) if i not in matched_gt]
         pred_only = [p for i, p in enumerate(pred) if i not in used_pred]
