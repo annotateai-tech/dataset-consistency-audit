@@ -19,7 +19,7 @@ DATASETS = [
     ('Retail Shelf, test',
      os.path.expanduser('~/Desktop/retail-audit/test/_annotations.coco.json')),
     ('Retail Shelf, Carol',
-     os.path.expanduser('~/Desktop/retail-audit-carol/test/_annotations.coco.json')),
+     'retail-audit-carol-labels.json'),
 ]
 
 

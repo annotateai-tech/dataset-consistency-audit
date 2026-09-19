@@ -1,4 +1,4 @@
-  200 / 2936   7s  400 / 2936   15s  600 / 2936   22s  800 / 2936   31s  1000 / 2936   48s  1200 / 2936   55s  1400 / 2936   62s  1600 / 2936   70s  1800 / 2936   77s  2000 / 2936   84s  2200 / 2936   93s  2400 / 2936   101s  2600 / 2936   109s  2800 / 2936   116s  2936 / 2936   121s
+  200 / 2936   6s  400 / 2936   14s  600 / 2936   20s  800 / 2936   27s  1000 / 2936   33s  1200 / 2936   39s  1400 / 2936   44s  1600 / 2936   50s  1800 / 2936   56s  2000 / 2936   65s  2200 / 2936   71s  2400 / 2936   78s  2600 / 2936   83s  2800 / 2936   91s  2936 / 2936   94s
 
 ============================================================
 1. BOITES ENCLOSES (>= 90% de leur aire dans une plus grande)
@@ -30,14 +30,14 @@ paires geometrie exclues des mesures 2 et 3 : 15877
 ============================================================
 2. PREDICTIONS SANS LABEL, geometrie exclue
 ============================================================
-dans une boite du GT       35354    41.3 %   unite de plus dans un emplacement
-hors de toute boite GT     50201    58.7 %   produit hors perimetre
+dans une boite du GT       35354    41.3 %
+hors de toute boite GT     50201    58.7 %
 total                      85555
 
 ============================================================
 3. LABELS SANS PREDICTION, geometrie exclue
 ============================================================
-dans une boite du modele    7244    29.9 %   geometrie, ou lot contre unite
-hors de toute prediction   16978    70.1 %   capacite du modele
+dans une boite du modele    7244    29.9 %
+hors de toute prediction   16978    70.1 %
 total                      24222
 ============================================================

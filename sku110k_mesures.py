@@ -8,12 +8,16 @@ SKU-110K : les trois nombres qui tranchent, sans rouvrir une image.
    est appliquee ; si le modele est nettement au-dessus, il ne l'a
    pas apprise.
 
-2. Les predictions sans label : leur centre tombe-t-il dans une boite
-   du GT (une unite de plus dans un emplacement deja labellise) ou en
-   dehors de tout (un produit hors perimetre) ?
+2. Les predictions non appariees : leur centre tombe-t-il dans une
+   boite du GT, ou en dehors de toutes ?
 
-3. Les labels sans prediction : centre dans une boite du modele
-   (geometrie ou lot contre unite) ou hors de tout (capacite).
+3. Les labels non apparies : centre dans une boite du modele, ou hors
+   de toutes ?
+
+Ces deux mesures donnent une POSITION, pas une cause. Une prediction
+dont le centre tombe dans un label peut etre une unite de plus, un
+doublon ou une etiquette de prix. L'interpretation demande une lecture
+manuelle.
 
 match() est importee de baselines.py, jamais reecrite.
 
@@ -181,9 +185,9 @@ def main():
     print('=' * 60)
     print('2. PREDICTIONS SANS LABEL, geometrie exclue')
     print('=' * 60)
-    print('dans une boite du GT    %8d   %5.1f %%   unite de plus dans un emplacement'
+    print('dans une boite du GT    %8d   %5.1f %%'
           % (v_dedans, 100.0 * v_dedans / tv if tv else 0))
-    print('hors de toute boite GT  %8d   %5.1f %%   produit hors perimetre'
+    print('hors de toute boite GT  %8d   %5.1f %%'
           % (v_dehors, 100.0 * v_dehors / tv if tv else 0))
     print('total                   %8d' % tv)
 
@@ -192,9 +196,9 @@ def main():
     print('=' * 60)
     print('3. LABELS SANS PREDICTION, geometrie exclue')
     print('=' * 60)
-    print('dans une boite du modele %7d   %5.1f %%   geometrie, ou lot contre unite'
+    print('dans une boite du modele %7d   %5.1f %%'
           % (r_dedans, 100.0 * r_dedans / tr if tr else 0))
-    print('hors de toute prediction %7d   %5.1f %%   capacite du modele'
+    print('hors de toute prediction %7d   %5.1f %%'
           % (r_dehors, 100.0 * r_dehors / tr if tr else 0))
     print('total                    %7d' % tr)
     print('=' * 60)
