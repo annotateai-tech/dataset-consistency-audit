@@ -27,7 +27,7 @@ import os
 import sys
 import time
 
-from baselines import iou, match, load_coco, IOU_MATCH
+from baselines import iou, match, load_coco, IOU_MATCH, enclosed_boxes, ENCLOSE_RATIO
 
 COCO = 'test/_annotations.coco.json'
 PREDS = 'predictions'
@@ -35,7 +35,7 @@ PREDS = 'predictions'
 # Une boite en enclot une autre si l'aire de l'intersection couvre
 # au moins ce ratio de la petite. Seuil choisi avant de lire les
 # chiffres.
-ENCLOSE = 0.90
+ENCLOSE = ENCLOSE_RATIO
 GEOM_LO = 0.20
 
 
@@ -77,7 +77,7 @@ def centre_inside(pt, b):
     return b[0] <= x <= b[0] + b[2] and b[1] <= y <= b[1] + b[3]
 
 
-def count_enclosures(boxes):
+def _count_enclosures_ancienne(boxes):
     """Nombre de boites qui contiennent le centre d'une autre boite
     plus petite, et dont l'intersection couvre >= ENCLOSE de celle-ci.
     """
@@ -122,13 +122,13 @@ def main():
                 for d in raw.get('detections', [])]
         gt = gt_all.get(fname, [])
 
-        e = count_enclosures(gt)
+        e = len(enclosed_boxes(gt))
         if e:
             images_gt_enc.append((fname, e, len(gt)))
         gt_enc += e
         gt_total += len(gt)
 
-        pr_enc += count_enclosures(pred)
+        pr_enc += len(enclosed_boxes(pred))
         pr_total += len(pred)
 
         matched_gt, used_pred = match(gt, pred, IOU_MATCH)
@@ -162,11 +162,11 @@ def main():
     print('\n')
 
     print('=' * 60)
-    print('1. ENCLOSURES  (une boite en contient une autre a >= %d%%)' % (ENCLOSE * 100))
+    print('1. BOITES ENCLOSES (>= %d%% de leur aire dans une plus grande)' % (ENCLOSE * 100))
     print('=' * 60)
     print('GT      %8d / %8d   %6.2f %%' % (gt_enc, gt_total, 100.0 * gt_enc / gt_total))
     print('modele  %8d / %8d   %6.2f %%' % (pr_enc, pr_total, 100.0 * pr_enc / pr_total))
-    print('meme regle sur Retail Shelf : GT test 0,95 %, Carol 0,23 %')
+    print('(comparaison Retail Shelf : voir enclosures_meme_regle.py)')
     print('images du GT avec au moins une enclosure : %d / %d'
           % (len(images_gt_enc), len(files)))
     if images_gt_enc:

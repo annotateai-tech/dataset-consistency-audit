@@ -1,0 +1,43 @@
+  200 / 2936   7s  400 / 2936   15s  600 / 2936   22s  800 / 2936   31s  1000 / 2936   48s  1200 / 2936   55s  1400 / 2936   62s  1600 / 2936   70s  1800 / 2936   77s  2000 / 2936   84s  2200 / 2936   93s  2400 / 2936   101s  2600 / 2936   109s  2800 / 2936   116s  2936 / 2936   121s
+
+============================================================
+1. BOITES ENCLOSES (>= 90% de leur aire dans une plus grande)
+============================================================
+GT            25 /   431546     0.01 %
+modele     28469 /   492879     5.78 %
+(comparaison Retail Shelf : voir enclosures_meme_regle.py)
+images du GT avec au moins une enclosure : 21 / 2936
+
+les quinze plus fortes, cote GT :
+  test_272.jpg        4 enclosures /  172 boites
+  test_222.jpg        2 enclosures /  121 boites
+  test_1399.jpg       1 enclosures /  122 boites
+  test_1441.jpg       1 enclosures /  105 boites
+  test_1670.jpg       1 enclosures /  153 boites
+  test_1689.jpg       1 enclosures /  110 boites
+  test_1714.jpg       1 enclosures /  122 boites
+  test_2008.jpg       1 enclosures /  201 boites
+  test_2033.jpg       1 enclosures /   94 boites
+  test_2195.jpg       1 enclosures /  130 boites
+  test_2238.jpg       1 enclosures /  130 boites
+  test_2414.jpg       1 enclosures /  211 boites
+  test_25.jpg         1 enclosures /  128 boites
+  test_257.jpg        1 enclosures /  126 boites
+  test_2671.jpg       1 enclosures /  140 boites
+
+paires geometrie exclues des mesures 2 et 3 : 15877
+
+============================================================
+2. PREDICTIONS SANS LABEL, geometrie exclue
+============================================================
+dans une boite du GT       35354    41.3 %   unite de plus dans un emplacement
+hors de toute boite GT     50201    58.7 %   produit hors perimetre
+total                      85555
+
+============================================================
+3. LABELS SANS PREDICTION, geometrie exclue
+============================================================
+dans une boite du modele    7244    29.9 %   geometrie, ou lot contre unite
+hors de toute prediction   16978    70.1 %   capacite du modele
+total                      24222
+============================================================
