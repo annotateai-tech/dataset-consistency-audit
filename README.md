@@ -107,10 +107,10 @@ line of work) finds labels that are **wrong** — the image says cat, the label
 says dog. This finds labels that are **incompatible with each other**: each
 one defensible on its own, no two agreeing on what an object is.
 
-## Write-up
+## Write-ups
 
-A worked example on a public CC BY dataset, with figures:
-https://www.annotateai.tech/blog/four-contradictory-rules
+- [SKU-110K: 25 enclosed boxes in 431,546](https://www.annotateai.tech/blog/sku110k-rule-nobody-wrote): a labelling rule the annotators followed but nobody wrote down.
+- [Four contradictory rules](https://www.annotateai.tech/blog/four-contradictory-rules): a worked example on a public CC BY dataset, with figures.
 
 ## Licence
 
